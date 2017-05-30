@@ -1,0 +1,19 @@
+version: "2"
+services:
+  server:
+    build: ./test-ansible-server
+    tty: true
+    environment:
+        - HOSTTYPE=SERVER
+    links:
+        - client
+    volumes:
+        - /opt/data:/opt/data
+  client:
+    build: ./test-ansible-client
+    environment:
+        - HOSTTYPE=CLIENT
+    tty: true
+    volumes:
+       - /opt/data:/opt/data
+
